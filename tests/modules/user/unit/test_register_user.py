@@ -1,9 +1,9 @@
-import pytest
 from uuid import uuid4
 
-from modules.user.application.register_user import RegisterUserCommand, RegisterUserHandler
-from modules.user.domain.user import User
-from modules.user.domain.repository import IUserRepository
+from modules.user.application.register_user import (
+    RegisterUserCommand,
+    RegisterUserHandler,
+)
 from tests.modules.user.unit.fake_user_repo import FakeUserRepository
 
 

@@ -5,11 +5,12 @@ from src.modules.user.infrastructure.user_model import User as UserModel
 from src.modules.user.domain.user import User as DomainUser
 from src.modules.user.domain.repository import IUserRepository
 
+
 class SQLModelUserRepository(IUserRepository):
     def __init__(self, engine) -> None:
         self.engine = engine
 
-     # ---------- Mappers ----------
+    # ---------- Mappers ----------
     @staticmethod
     def _to_domain(model: UserModel) -> DomainUser:
         return DomainUser(
@@ -38,6 +39,8 @@ class SQLModelUserRepository(IUserRepository):
 
     async def get_by_email(self, email: str) -> DomainUser | None:
         async with AsyncSession(self.engine) as session:
-            result = await session.exec(select(UserModel).where(UserModel.email == email))
+            result = await session.exec(
+                select(UserModel).where(UserModel.email == email)
+            )
             model = result.first()
             return self._to_domain(model) if model else None

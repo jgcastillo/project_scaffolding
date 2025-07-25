@@ -4,12 +4,14 @@ from uuid import UUID
 from modules.user.domain.user import User
 from modules.user.domain.repository import IUserRepository
 
+
 @dataclass(slots=True)
 class RegisterUserCommand:
     user_id: UUID
     email: str
     first_name: str
     last_name: str
+
 
 class RegisterUserHandler:
     def __init__(self, repo: IUserRepository) -> None:
